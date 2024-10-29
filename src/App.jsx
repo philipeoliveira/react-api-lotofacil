@@ -1,67 +1,38 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { Outlet } from 'react-router-dom';
 
 export default function App() {
-   const [isLoading, setIsLoading] = useState(false);
-   const [error, setError] = useState(null);
-   const [data, setData] = useState(null);
-   const [ascOrder, setAscOrder] = useState(false);
-
-   function toggleOrder() {
-      ascOrder ? setAscOrder(false) : setAscOrder(true);
-   }
-
-   async function fetchData() {
-      setIsLoading(true);
-
-      try {
-         const response = await axios.get(
-            'https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil/'
-         );
-         setData(response.data);
-      } catch (error) {
-         console.error('Erro ao buscar os dados na API.', error);
-         setError(error);
-      } finally {
-         setIsLoading(false);
-      }
-   }
-
-   useEffect(() => {
-      fetchData();
-   }, []);
-
    return (
-      <main>
-         <section>
-            <h1>Último sorteio da Lotofácil</h1>
-
-            {isLoading ? (
-               <p>Carregando...</p>
-            ) : error ? (
-               <>
-                  <p>{error.message}</p>
-                  <p>Não foi possível conectar-se à API da Loterias Caixa.</p>
-               </>
-            ) : (
-               data && (
-                  <div key={data.numero}>
-                     <p>Concurso: {data.numero}</p>
-                     <p>Data do sorteio: {data.dataApuracao}</p>
-                     <p>
-                        {ascOrder
-                           ? data.listaDezenas.join('-')
-                           : data.dezenasSorteadasOrdemSorteio.join('-')}
-                     </p>
-                     <p>
-                        <button onClick={toggleOrder}>
-                           {ascOrder ? 'Ordem de sorteio' : 'Ordem crescente'}
-                        </button>
-                     </p>
-                  </div>
-               )
-            )}
-         </section>
-      </main>
+      <div className='flex flex-col max-w-6xl mx-auto h-screen py-3'>
+         <div className='mb-5'>
+            <header className='py-5'>
+               <h1 className='text-emerald-300 text-3xl'>Estatísticas da Lotofácil</h1>
+            </header>
+            <nav className='py-3'>
+               <ul className='flex gap-2 bg-zinc-800 rounded-md px-3 btn-menu'>
+                  <li>
+                     <a href={'/'}>Página inicial</a>
+                  </li>
+                  <li>
+                     <a href={'/last-draw'}>Último sorteio</a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+         <main className='flex-1'>
+            <Outlet />
+         </main>
+         <footer className='text-center border-t-2 border-zinc-800  p-3'>
+            <p>
+               Desenvolvido por{' '}
+               <a
+                  href='https://github.com/philipeoliveira'
+                  title='Abrir em nova aba o GitHub do autor Philipe Oliveira'
+                  target='_blank'
+               >
+                  Philipe Oliveira
+               </a>
+            </p>
+         </footer>
+      </div>
    );
 }
