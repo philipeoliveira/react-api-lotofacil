@@ -19,9 +19,9 @@ export default function LastDraw() {
             'https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil/'
          );
          setData(response.data);
-      } catch (error) {
-         console.error('Erro ao buscar os dados na API.', error);
-         setError(error);
+      } catch (err) {
+         console.error('Erro ao buscar os dados na API.', err);
+         setError(err);
       } finally {
          setIsLoading(false);
       }
