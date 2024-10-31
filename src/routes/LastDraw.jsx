@@ -33,7 +33,7 @@ export default function LastDraw() {
 
    return (
       <section className='flex flex-col gap-1'>
-         <h2 className='text-xl font-semibold'>Último sorteio da Lotofácil</h2>
+         <h2 className='text-xl font-semibold'>Sorteio mais recente da Lotofácil</h2>
 
          {isLoading ? (
             <p className='my-5'>Carregando...</p>
