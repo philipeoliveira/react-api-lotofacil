@@ -6,6 +6,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import LastDraw from './routes/LastDraw.jsx';
+import Home from './routes/Home.jsx';
 
 const router = createBrowserRouter([
    {
@@ -13,7 +14,11 @@ const router = createBrowserRouter([
       element: <App />,
       children: [
          {
-            path: '/last-draw',
+            path: '/',
+            element: <Home />,
+         },
+         {
+            path: 'last-draw',
             element: <LastDraw />,
          },
       ],
