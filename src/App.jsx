@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
 export default function App() {
    return (
@@ -10,10 +10,10 @@ export default function App() {
             <nav className='py-3'>
                <ul className='flex gap-2 bg-zinc-800 rounded-md px-3 btn-menu'>
                   <li>
-                     <a href={'/'}>Página inicial</a>
+                     <Link to={'/'}>Página inicial</Link>
                   </li>
                   <li>
-                     <a href={'/last-draw'}>Último sorteio</a>
+                     <Link to={'/last-draw'}>Último sorteio</Link>
                   </li>
                </ul>
             </nav>
