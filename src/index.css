@@ -6,6 +6,12 @@
    a {
       @apply text-emerald-500 hover:text-emerald-300;
    }
+   h2 {
+      @apply text-xl font-semibold;
+   }
+   p {
+      @apply leading-10;
+   }
 }
 
 @layer components {

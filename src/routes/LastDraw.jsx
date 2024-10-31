@@ -33,7 +33,7 @@ export default function LastDraw() {
 
    return (
       <section className='flex flex-col gap-1'>
-         <h2 className='text-xl font-semibold'>Sorteio mais recente da Lotofácil</h2>
+         <h2>Sorteio mais recente da Lotofácil</h2>
 
          {isLoading ? (
             <p className='my-5'>Carregando...</p>
@@ -46,17 +46,17 @@ export default function LastDraw() {
             data && (
                <div key={data.numero}>
                   <p className='text-sm'>Data do sorteio: {data.dataApuracao}</p>
-                  <div className='flex flex-col gap-5 my-3 mt-5'>
+                  <div className='flex flex-col gap-2 my-3'>
                      <p className='font-semibold'>
                         Concurso:{' '}
                         <span className='text-xl text-emerald-300'>{data.numero}</span>
                      </p>
-                     <p className='text-xl text-emerald-300 font-semibold'>
+                     <p className='text-[1.35rem] text-emerald-300 font-semibold'>
                         {ascOrder
                            ? data.listaDezenas.join('-')
                            : data.dezenasSorteadasOrdemSorteio.join('-')}
                      </p>
-                     <p>
+                     <p className='mt-3'>
                         <button onClick={toggleOrder} className='btn'>
                            {ascOrder ? 'Ordem de sorteio' : 'Ordem crescente'}
                         </button>
