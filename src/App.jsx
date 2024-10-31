@@ -21,7 +21,7 @@ export default function App() {
          <main className='flex-1'>
             <Outlet />
          </main>
-         <footer className='text-center border-t-2 border-zinc-800  p-3'>
+         <footer className='text-center border-t-2 border-zinc-800 p-3'>
             <p>
                Desenvolvido por{' '}
                <a
