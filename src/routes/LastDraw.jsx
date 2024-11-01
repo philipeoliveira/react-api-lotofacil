@@ -1,45 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 export default function LastDraw() {
-   const [isLoading, setIsLoading] = useState(false);
-   const [error, setError] = useState(null);
-   const [data, setData] = useState(null);
    const [ascOrder, setAscOrder] = useState(false);
 
    function toggleOrder() {
       ascOrder ? setAscOrder(false) : setAscOrder(true);
    }
 
-   async function fetchData() {
-      setIsLoading(true);
-
-      try {
+   const { data, isLoading, isError, error } = useQuery({
+      queryKey: ['last-lotofacil-draw'],
+      queryFn: async () => {
          const response = await axios.get(
             'https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil/'
          );
-         setData(response.data);
-      } catch (err) {
-         console.error('Erro ao buscar os dados na API.', err);
-         setError(err);
-      } finally {
-         setIsLoading(false);
-      }
-   }
-
-   useEffect(() => {
-      fetchData();
-   }, []);
+         return response.data;
+      },
+   });
 
    return (
       <section className='flex flex-col gap-1'>
          <h2>Sorteio mais recente da Lotofácil</h2>
-
          {isLoading ? (
             <p className='my-5'>Carregando...</p>
-         ) : error ? (
+         ) : isError ? (
             <div className='my-5'>
-               <p>{error.message}</p>
+               <p>Erro: {error.message}</p>
                <p>Não foi possível conectar-se à API da Loterias Caixa.</p>
             </div>
          ) : (
