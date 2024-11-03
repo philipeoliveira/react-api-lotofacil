@@ -8,7 +8,7 @@ export default function Menu() {
                <Link to={'/'}>Página inicial</Link>
             </li>
             <li>
-               <Link to={'/last-draw'}>Sorteio recente</Link>
+               <Link to={'/draw-results'}>Resultados</Link>
             </li>
          </ul>
       </nav>

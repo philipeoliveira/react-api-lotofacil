@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 import App from './App.jsx';
-import LastDraw from './routes/LastDraw.jsx';
+import DrawResults from './routes/DrawResults.jsx';
 import Home from './routes/Home.jsx';
 
 // TanStack Query
@@ -22,8 +22,8 @@ const router = createBrowserRouter([
             element: <Home />,
          },
          {
-            path: 'last-draw',
-            element: <LastDraw />,
+            path: 'draw-results',
+            element: <DrawResults />,
          },
       ],
    },
