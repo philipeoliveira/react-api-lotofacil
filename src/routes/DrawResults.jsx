@@ -3,6 +3,7 @@ import { useDrawData } from '../hooks/useDrawData';
 
 export default function DrawResults() {
    const [drawNumber, setDrawNumber] = useState('');
+   const [inputValue, setInputValue] = useState('');
    const { data, isLoading, isError, error } = useDrawData(drawNumber);
    const [ascOrder, setAscOrder] = useState(false);
 
@@ -11,22 +12,29 @@ export default function DrawResults() {
    }
 
    function handleDrawNumberChange(event) {
+      setInputValue(event.target.value);
+   }
+
+   function handleSubmit(event) {
       event.preventDefault();
-      const inputValue = event.target.draw.value;
-      if (isNaN(inputValue) || inputValue <= 0) return;
+      if (isNaN(inputValue) || inputValue <= 0) {
+         setInputValue(drawNumber);
+         return;
+      }
       setDrawNumber(inputValue);
    }
 
    return (
       <section className='flex flex-col gap-3'>
-         <form onSubmit={handleDrawNumberChange} className='flex flex-col gap-2 mb-4'>
+         <form onSubmit={handleSubmit} className='flex flex-col gap-2 mb-4'>
             <label htmlFor='draw'>Buscar resultado do concurso:</label>
             <div className='flex gap-3'>
                <input
                   type='number'
                   placeholder='Digite o número do concurso'
                   id='draw'
-                  name='draw'
+                  onChange={handleDrawNumberChange}
+                  value={inputValue}
                   className='min-w-64'
                />
                <button type='submit'>Buscar</button>
