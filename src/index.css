@@ -12,16 +12,19 @@
    p {
       @apply leading-10;
    }
+   input {
+      @apply border-2 border-emerald-300 rounded-md px-2.5 bg-transparent;
+   }
+   button {
+      @apply flex items-center px-3 py-1.5 rounded-md bg-emerald-500;
+      @apply text-zinc-900 text-sm font-semibold;
+      @apply hover:bg-emerald-300;
+   }
 }
 
 @layer components {
    .btn-menu a {
       @apply block py-3 px-4 text-zinc-300 font-semibold;
       @apply hover:bg-zinc-700 hover:text-zinc-50;
-   }
-   .btn {
-      @apply flex items-center px-3 py-1.5 rounded-md bg-emerald-500;
-      @apply text-zinc-900 text-sm font-semibold;
-      @apply hover:bg-emerald-300;
    }
 }
