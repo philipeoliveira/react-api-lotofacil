@@ -12,6 +12,7 @@ export function useDrawData(drawNumber) {
    const query = useQuery({
       queryKey: ['lotofacil-draw-results', drawNumber],
       queryFn: () => fetchData(drawNumber),
+      retry: 1, // nova solicitação automática quando há falha na query
    });
 
    return query;

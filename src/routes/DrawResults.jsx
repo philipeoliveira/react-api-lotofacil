@@ -45,8 +45,12 @@ export default function DrawResults() {
             <p className='my-5'>Carregando...</p>
          ) : isError ? (
             <div className='my-5'>
-               <p>Erro: {error.message}</p>
-               <p>Não foi possível conectar-se à API da Loterias Caixa.</p>
+               <p>
+                  {error.code === 'ERR_BAD_RESPONSE'
+                     ? `O concurso ${drawNumber} não foi encontrado.`
+                     : 'Não foi possível se conectar com a API da Loterias Caixa.'}
+               </p>
+               {console.log(`Erro: ${error.message}`)}
             </div>
          ) : (
             data && (
